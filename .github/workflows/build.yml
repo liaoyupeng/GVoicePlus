@@ -31,7 +31,8 @@ jobs:
 
       - name: Build
         # No Apple certificate, so sign ad hoc (identity "-"): Apple Silicon refuses to run an app with no signature.
-        run: npm run build:mac -- --arm64 --publish never -c.mac.identity=-
+        # Hardened runtime is only needed for notarization, and with an ad-hoc signature it can stop the app launching.
+        run: npm run build:mac -- --arm64 --publish never -c.mac.identity=- -c.mac.hardenedRuntime=false
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
           # electron-builder skips signing entirely on pull requests unless told otherwise.
