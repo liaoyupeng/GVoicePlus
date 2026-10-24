@@ -30,10 +30,12 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:mac -- --arm64 --publish never
+        # No Apple certificate, so sign ad hoc (identity "-"): Apple Silicon refuses to run an app with no signature.
+        run: npm run build:mac -- --arm64 --publish never -c.mac.identity=-
         env:
-          # No Apple certificate: skip keychain lookup and let electron-builder ad-hoc sign.
           CSC_IDENTITY_AUTO_DISCOVERY: "false"
+          # electron-builder skips signing entirely on pull requests unless told otherwise.
+          CSC_FOR_PULL_REQUEST: "true"
 
       - name: SHA-256 of the DMG
         run: shasum -a 256 dist/*.dmg | tee dist/SHA256SUMS.txt
