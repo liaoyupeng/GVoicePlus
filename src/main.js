@@ -21,12 +21,6 @@ const Url = require('url');
 const store = new Store();
 const codeCopy = require('./utils/codeCopy').init({ getPrefs: () => store.get('prefs') || {} });   // copies verification codes when the setting is on
 require('./utils/replyNotifications').init({ getWindow: () => page, onMessage: (body) => (process.platform === 'win32' ? null : codeCopy.handle(body)) });   // Windows notifications have their own Copy button
-// "Check for updates" (notify only): offers the download page when the GitHub repo in constants.js has a newer release.
-const updates = require('./utils/updateCheck').init({
-    getWindow: () => win,
-    getPrefs: () => store.get('prefs') || {},
-    setPref: (key, value) => { const prefs = store.get('prefs') || {}; prefs[key] = value; store.set('prefs', prefs); }
-});
 const appPath = app.getAppPath();
 const REFRESH_RATE = 60000; // 60 seconds: only a safety net now; unread changes arrive instantly from the page (unreadWatcher)
 // The app icon is the one chosen in Settings ("App icon", prefs.appIcon).  iconSets.js lists the built-in choices;
@@ -303,7 +297,6 @@ function createWindow() {
                 {type: 'separator'},
                 {label: '&Security Policy',              click: () => {shell.openExternal(constants.URL_GITHUB_SECURITY_POLICY);}},
                 {type: 'separator'},
-                {label: 'Check for &updates...',         click: () => {updates.checkNow();}},
                 {label: 'View &releases',                click: () => {shell.openExternal(constants.URL_GITHUB_RELEASES);}},
                 {label: `&About (v${app.getVersion()})`, click: () => {shell.openExternal(constants.URL_GITHUB_README);}}
             ]
@@ -833,13 +826,6 @@ ipcMain.handle('pick-custom-icon', async (e) => {
         applyIconSet('custom');
     }
     return result;
-});
-
-// Called when the "check for updates" checkbox has been checked/unchecked.
-ipcMain.on('pref-change-check-updates', (e, enabled) => {
-    const prefs = store.get('prefs') || {};
-    prefs.checkForUpdates = !!enabled;
-    store.set('prefs', prefs);
 });
 
 // Called when the "exit on close" checkbox has been checked/unchecked.

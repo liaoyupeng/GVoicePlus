@@ -290,13 +290,6 @@
         ipcRenderer.send('pref-change-copy-codes', e.target.checked);
     });
 
-    // Set the "tell me about updates" checkbox (on by default).
-    const checkUpdates = document.getElementById('check-updates');
-    checkUpdates.checked = prefs.checkForUpdates !== false;
-    checkUpdates.addEventListener('change', (e) => {
-        ipcRenderer.send('pref-change-check-updates', e.target.checked);
-    });
-
     // "Top bar": a picture of Google Voice's top bar.  Clicking an item hides or shows it (applied to the main window at once).
     // The keys and their order match src/utils/topBar.js.
     // Headphones, like the audio button on the Google Voice page (a fixed drawing, not page content).

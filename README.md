@@ -17,7 +17,6 @@ This is a fork of [latin-programmer/google-voice-desktop-app](https://github.com
 - **Sidebars:** hide the dialer sidebar, collapse the main sidebar, or collapse it and show it again when you hover. Settings > Layout.
 - **Notifications:** reply straight from a notification.
 - **Verification codes:** copy a 4 to 8 digit code from a text to the clipboard (without any letters, like the G- in Google codes). For codes of 6 or more digits it also marks the thread read afterwards. Mac only. Turn on "Copy verification codes" in Settings > General.
-- **Updates:** an optional notify-only check ("Tell me about updates"). It tells you when a new release exists and never installs anything.
 - **Images:** paste or drag-and-drop images into a message.
 - **Also:** start at logon, start minimized to the tray, and spell checking.
 
@@ -41,7 +40,7 @@ This is a fork of [latin-programmer/google-voice-desktop-app](https://github.com
 
 Open **GVoicePlus > Settings** in the Mac menu bar (or `File > Settings` on Windows and Linux). The tray icon also opens it.
 
-- **General:** menu bar, start at logon, start minimized, exit on close, spelling, verification codes, update notices.
+- **General:** menu bar, start at logon, start minimized, exit on close, spelling, verification codes.
 - **Appearance:** theme, zoom, app icon.
 - **Layout:** top bar items and sidebars.
 
@@ -60,7 +59,7 @@ Tests: `npm test`. To build the app yourself: `npm run build:mac` (or `build:win
 
 ## Privacy
 
-Your sign-in and settings are stored on your computer. Besides Google Voice itself, the only network request this fork adds is the optional update check, which asks GitHub for the latest release of this repository.
+Your sign-in and settings are stored on your computer. The app makes no network requests of its own besides loading Google Voice: there is no update check and no telemetry.
 
 ## Credits
 
