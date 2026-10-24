@@ -15,10 +15,6 @@ const URL_GITHUB_FEATURE_REQUEST = 'https://github.com/lazyb5/GVoicePlus/issues/
 const URL_GITHUB_ASK_QUESTION    = 'https://github.com/lazyb5/GVoicePlus/issues/new?labels=question';
 const URL_GITHUB_RELEASES        = 'https://github.com/lazyb5/GVoicePlus/releases';
 
-// "owner/name" of the GitHub repository whose latest release the "Check for updates" feature looks at (src/utils/updateCheck.js).
-// Empty = update checking is switched off.  Set this to your own fork once it exists.
-const UPDATE_CHECK_REPO = 'lazyb5/GVoicePlus';
-
 // Default Settings
 const DEFAULT_SETTING_SHOW_MENU_BAR   = true;
 const DEFAULT_SETTING_THEME           = 'default';
@@ -39,7 +35,6 @@ module.exports = {
     URL_GITHUB_FEATURE_REQUEST, // Link to request a feature on GitHub
     URL_GITHUB_ASK_QUESTION,    // Link to ask a question on GitHub
     URL_GITHUB_RELEASES,        // Link to published releases on GitHub
-    UPDATE_CHECK_REPO,          // "owner/name" checked for new releases (empty = off)
 
     // Default Settings
     DEFAULT_SETTING_SHOW_MENU_BAR,   // Whether the MenuBar of the main application window should be visible
